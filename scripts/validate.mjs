@@ -114,6 +114,14 @@ if (files.length === 0) {
 
 let hasErrors = false;
 
+// Naming convention: operator filenames must use hyphens, not underscores
+for (const { country, filename } of files) {
+  if (filename.includes("_")) {
+    console.error(`❌ ${country}/${filename}: filename must use hyphens, not underscores (rename to ${filename.replaceAll("_", "-")})`);
+    hasErrors = true;
+  }
+}
+
 for (const { country, filename, filePath } of files) {
   const label = `${country}/${filename}`;
   const expectedId = basename(filename, ".yaml");
