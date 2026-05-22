@@ -399,9 +399,29 @@
       text-align: center;
     }
 
+    .back-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 16px;
+      transition: color .15s;
+    }
+    .back-btn:hover { color: var(--accent); }
+
     @media (max-width: 680px) {
-      aside { display: none; }
-      main { padding: 16px; }
+      .app { display: block; height: calc(100vh - 57px); position: relative; overflow: hidden; }
+      aside { width: 100%; height: 100%; border-right: none; }
+      main  { display: none; padding: 16px; height: 100%; }
+      .app.detail-view aside { display: none; }
+      .app.detail-view main  { display: block; }
+      .back-btn { display: flex; }
     }
   </style>
 </head>
@@ -501,6 +521,7 @@ async function loadOperator(country, id) {
     currentOperator = { ...data, country };
     const years = Object.keys(data.tariffs ?? {}).sort().reverse();
     selectedYear = years[0] ?? null;
+    document.querySelector('.app').classList.add('detail-view');
     renderDetail(currentOperator, years);
     const q = document.getElementById('search').value.toLowerCase();
     renderSidebar(allOperators.filter(op =>
@@ -528,6 +549,10 @@ function renderDetail(op, years) {
 
   document.getElementById('main').innerHTML = `
     <div class="detail-header">
+      <button class="back-btn" onclick="showSidebar()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Alle Netzbetreiber
+      </button>
       <div class="detail-id">operators/${escHtml(op.country)}/${escHtml(op.id)}.yaml</div>
       <div class="detail-name">${escHtml(op.name)}</div>
       <div class="detail-meta">${meta}</div>
@@ -584,6 +609,10 @@ function renderQuarterCard(q, slots) {
     <div class="timeline">${timelineSegs}</div>
     <table class="slots-table"><tbody>${rows}</tbody></table>
   </div>`;
+}
+
+function showSidebar() {
+  document.querySelector('.app').classList.remove('detail-view');
 }
 
 // ── API section ──────────────────────────────────────────────────────────────
