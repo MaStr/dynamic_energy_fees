@@ -110,48 +110,16 @@ tariffs:
         to: "24:00"
         tariff: ST
         price_ct_kwh_net: 8.67
-    Q2:   # TODO: Preisblatt 6a enthält nur Q1+Q4; Q2-Werte nicht offiziell belegt – bitte verifizieren
+    Q2:   # Ganztägig Standardtarif (kein HT/NT)
       - from: "00:00"
-        to: "11:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
-      - from: "11:00"
-        to: "14:00"
-        tariff: ST
-        price_ct_kwh_net: 8.67
-      - from: "14:00"
-        to: "18:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
-      - from: "18:00"
-        to: "22:00"
-        tariff: ST
-        price_ct_kwh_net: 8.67
-      - from: "22:00"
         to: "24:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
-    Q3:   # TODO: Preisblatt 6a enthält nur Q1+Q4; Q3-Werte nicht offiziell belegt – bitte verifizieren
+        tariff: ST
+        price_ct_kwh_net: 8.67
+    Q3:   # Ganztägig Standardtarif (kein HT/NT)
       - from: "00:00"
-        to: "11:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
-      - from: "11:00"
-        to: "14:00"
-        tariff: ST
-        price_ct_kwh_net: 8.67
-      - from: "14:00"
-        to: "18:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
-      - from: "18:00"
-        to: "22:00"
-        tariff: ST
-        price_ct_kwh_net: 8.67
-      - from: "22:00"
         to: "24:00"
-        tariff: NT
-        price_ct_kwh_net: 0.87
+        tariff: ST
+        price_ct_kwh_net: 8.67
     Q4:   # Quelle: Preisblatt 6a – Quartale 1 und 4
       - from: "00:00"
         to: "06:00"
