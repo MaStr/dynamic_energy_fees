@@ -27,6 +27,11 @@ jobs:
       - name: Build JSON index
         run: node scripts/build-index.mjs
 
+      - name: Copy web assets into dist/
+        run: |
+          cp -r web/* dist/
+          cp -r schema dist/schema
+
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
