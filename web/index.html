@@ -302,6 +302,94 @@
     .badge.HT { background: var(--ht-bg); color: var(--ht); }
 
 
+    /* ── API section ────────────────────────────── */
+    .api-section {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .api-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .api-section-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .api-docs-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .api-docs-link:hover { color: var(--accent); }
+    .api-call { border-bottom: 1px solid var(--border); }
+    .api-call:last-child { border-bottom: none; }
+    .api-call-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+    }
+    .api-method {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--nt);
+      flex-shrink: 0;
+    }
+    .api-url {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .api-call-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+    .api-btn {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 10px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+    .api-btn:hover:not(:disabled) { border-color: var(--muted); color: var(--text); }
+    .api-btn:disabled { opacity: .4; cursor: not-allowed; }
+    .api-btn.copied { color: var(--nt); border-color: var(--nt); }
+    .api-btn.running { color: var(--accent); border-color: var(--accent); }
+    .api-result {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 14px 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--text);
+      overflow: auto;
+      max-height: 280px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .api-result.error { color: var(--ht); }
+
     /* Loading/error states */
     .loading {
       font-family: var(--mono);
@@ -446,7 +534,7 @@ function renderDetail(op, years) {
     </div>
     <div class="year-tabs" id="year-tabs">${yearTabs}</div>
     <div id="quarters-container"></div>
-    <div id="evcc-container"></div>`;
+    <div id="api-container"></div>`;
 
   document.getElementById('year-tabs').addEventListener('click', e => {
     const btn = e.target.closest('.year-tab');
@@ -457,6 +545,7 @@ function renderDetail(op, years) {
   });
 
   if (selectedYear) renderYear(op, selectedYear);
+  document.getElementById('api-container').innerHTML = renderApiSection(op);
 }
 
 function renderYear(op, year) {
@@ -474,7 +563,6 @@ function renderYear(op, year) {
     }).join('')}
   </div>`;
 
-  document.getElementById('evcc-container').innerHTML = '';
 }
 
 function renderQuarterCard(q, slots) {
@@ -496,6 +584,62 @@ function renderQuarterCard(q, slots) {
     <div class="timeline">${timelineSegs}</div>
     <table class="slots-table"><tbody>${rows}</tbody></table>
   </div>`;
+}
+
+// ── API section ──────────────────────────────────────────────────────────────
+function renderApiSection(op) {
+  const base = '/api/';
+  const p = `country=${encodeURIComponent(op.country)}&operator=${encodeURIComponent(op.id)}`;
+  const calls = [
+    { label: 'Nächste 48 h',        url: `${base}?${p}` },
+    { label: 'Nächste 96 h',        url: `${base}?${p}&next_hours=96` },
+    { label: 'Rohdaten',            url: `${base}?${p}&mode=raw` },
+  ];
+  return `
+    <div class="api-section">
+      <div class="api-section-header">
+        <span class="api-section-title">API</span>
+        <a href="${base}" target="_blank" rel="noopener" class="api-docs-link">Dokumentation ↗</a>
+      </div>
+      ${calls.map((c, i) => `
+        <div class="api-call">
+          <div class="api-call-row">
+            <span class="api-method">GET</span>
+            <code class="api-url" title="${escHtml(c.url)}">${escHtml(c.url)}</code>
+            <span class="api-call-label">${escHtml(c.label)}</span>
+            <button class="api-btn" onclick="copyApiUrl('${escHtml(c.url)}', this)">copy</button>
+            <button class="api-btn" onclick="runApiCall('${escHtml(c.url)}', 'api-res-${i}', this)">run ▶</button>
+          </div>
+          <pre class="api-result" id="api-res-${i}" style="display:none"></pre>
+        </div>`).join('')}
+    </div>`;
+}
+
+async function runApiCall(url, resultId, btn) {
+  const el = document.getElementById(resultId);
+  el.className = 'api-result';
+  el.style.display = 'block';
+  el.textContent = 'Lade…';
+  btn.disabled = true;
+  btn.classList.add('running');
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    el.textContent = JSON.stringify(data, null, 2);
+  } catch (e) {
+    el.classList.add('error');
+    el.textContent = `Fehler: ${e.message}`;
+  }
+  btn.disabled = false;
+  btn.classList.remove('running');
+}
+
+function copyApiUrl(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = 'copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
 }
 
 // ── Utils ────────────────────────────────────────────────────────────────────
