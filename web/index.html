@@ -588,7 +588,9 @@ function renderQuarterCard(q, slots) {
 
 // ── API section ──────────────────────────────────────────────────────────────
 function renderApiSection(op) {
-  const base = '/api/';
+  const base = window.location.hostname === 'mastr.github.io'
+    ? 'http://dynnet.aod-rpg.de/api/'
+    : '/api/';
   const p = `country=${encodeURIComponent(op.country)}&operator=${encodeURIComponent(op.id)}`;
   const calls = [
     { label: 'Nächste 48 h',        url: `${base}?${p}` },
