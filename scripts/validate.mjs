@@ -90,6 +90,11 @@ function validateQuarter(slots, label, errors, country) {
     if (prices.HT.length > 0 && prices.ST.length > 0) {
       const maxHT = Math.max(...prices.HT);
       const maxST = Math.max(...prices.ST);
+      if (maxHT <= maxST + 0.001) {
+        errors.push(
+          `${label}: HT (${maxHT} ct/kWh) must be greater than ST (${maxST} ct/kWh)`
+        );
+      }
       if (maxHT > maxST * 2 + 0.001) {
         errors.push(
           `${label}: HT (${maxHT} ct/kWh) exceeds 2× ST (${maxST} ct/kWh) per §14a BK8-22/010-A`
