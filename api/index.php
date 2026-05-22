@@ -53,8 +53,8 @@ if (empty($_GET)) {
         'countries'   => ALLOWED_COUNTRIES,
         'endpoints'   => [
             [
-                'description' => 'evcc-Format: Preisslots für heute + morgen (Standard)',
-                'url'         => '?country=de&operator=syna',
+                'description' => 'Preisslots für die nächsten N Stunden (Standard: 48, max: 168)',
+                'url'         => '?country=de&operator=syna&next_hours=48',
                 'returns'     => '[{"start":"<RFC3339>","end":"<RFC3339>","value":<€/kWh>}, …]',
             ],
             [
@@ -94,6 +94,7 @@ $operatorId = preg_replace('/[^a-z0-9_-]/', '', strtolower($_GET['operator'] ?? 
 $mode       = $_GET['mode'] ?? 'evcc';
 $year       = (int)($_GET['year'] ?? date('Y'));
 $quarter    = strtoupper($_GET['quarter'] ?? '');
+$nextHours  = min(168, max(1, (int)($_GET['next_hours'] ?? 48)));
 
 if ($country === '' || !in_array($country, ALLOWED_COUNTRIES, true)) {
     http_response_code(400);
@@ -148,9 +149,10 @@ if ($mode === 'quarter') {
 }
 
 // ── Mode: evcc (default) ──────────────────────────────────────────────────────
-// Returns price slots for today + tomorrow in evcc HTTP tariff format.
+// Returns price slots for the next N hours (default 48) in evcc HTTP tariff format.
 // evcc expects: [{"start":"2026-01-15T00:00:00+01:00","end":"...","value":0.0871}]
 // value is in €/kWh (not ct/kWh)
+// Parameter next_hours: 1–168, default 48
 
 function quarterForMonth(int $month): string {
     return match(true) {
@@ -190,16 +192,26 @@ function buildEvccSlots(array $yamlSlots, \DateTimeImmutable $date): array {
     return $result;
 }
 
-$tz    = new \DateTimeZone('Europe/Berlin');
-$today = new \DateTimeImmutable('today', $tz);
-$tomorrow = $today->modify('+1 day');
-
+$tz      = new \DateTimeZone('Europe/Berlin');
+$now     = new \DateTimeImmutable('now', $tz);
+$today   = new \DateTimeImmutable('today', $tz);
+$until   = $now->modify("+{$nextHours} hours");
 $tariffs = $data['tariffs'] ?? [];
 
-$evccSlots = array_merge(
-    buildEvccSlots(slotsForDate($tariffs, $today), $today),
-    buildEvccSlots(slotsForDate($tariffs, $tomorrow), $tomorrow)
-);
+// Generate enough full days to cover the requested horizon
+$daysNeeded = (int)ceil($nextHours / 24) + 1;
+$allSlots   = [];
+for ($i = 0; $i < $daysNeeded; $i++) {
+    $date      = $today->modify("+{$i} days");
+    $allSlots  = array_merge($allSlots, buildEvccSlots(slotsForDate($tariffs, $date), $date));
+}
+
+// Keep only slots that overlap with [now, now+next_hours]
+$evccSlots = array_values(array_filter($allSlots, function (array $slot) use ($now, $until): bool {
+    $start = new \DateTimeImmutable($slot['start']);
+    $end   = new \DateTimeImmutable($slot['end']);
+    return $end > $now && $start < $until;
+}));
 
 if (empty($evccSlots)) {
     http_response_code(404);
