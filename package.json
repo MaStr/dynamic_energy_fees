@@ -1,0 +1,18 @@
+{
+  "name": "netzentgelte-14a",
+  "version": "0.1.0",
+  "description": "Community-gepflegte §14a EnWG Modul 3 Netzentgelte aller deutschen Verteilnetzbetreiber",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build-index.mjs",
+    "dev": "node scripts/validate.mjs && node scripts/build-index.mjs && npx serve dist"
+  },
+  "keywords": ["netzentgelte", "14a", "EnWG", "evcc", "HEMS", "energy"],
+  "license": "MIT",
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.7.0"
+  }
+}

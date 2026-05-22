@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/MaStr/dynamic_energy_fees/main/schema/operator.schema.json",
+  "title": "Netzbetreiber §14a Modul 3 Tariff",
+  "description": "Schema für zeitvariable Netzentgelte nach §14a EnWG Modul 3",
+  "type": "object",
+  "required": ["id", "name", "website", "tariffs"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Eindeutiges Kürzel, muss dem Dateinamen ohne .yaml entsprechen"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Vollständiger Name des Netzbetreibers"
+    },
+    "bdew_code": {
+      "type": "string",
+      "pattern": "^[0-9]{13}$",
+      "description": "BDEW Marktpartnernummer (13 Stellen)"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Website des Netzbetreibers (Preisblatt-Seite bevorzugt)"
+    },
+    "regions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bundesländer, Kantone oder Regionen im Versorgungsgebiet"
+    },
+    "tariffs": {
+      "type": "object",
+      "description": "Tarife nach Jahr, dann Quartal",
+      "patternProperties": {
+        "^[0-9]{4}$": {
+          "$ref": "#/$defs/YearTariff"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "YearTariff": {
+      "type": "object",
+      "description": "Tarifstruktur für ein Kalenderjahr",
+      "required": ["Q1", "Q2", "Q3", "Q4"],
+      "additionalProperties": false,
+      "properties": {
+        "Q1": { "$ref": "#/$defs/QuarterSlots" },
+        "Q2": { "$ref": "#/$defs/QuarterSlots" },
+        "Q3": { "$ref": "#/$defs/QuarterSlots" },
+        "Q4": { "$ref": "#/$defs/QuarterSlots" }
+      }
+    },
+    "QuarterSlots": {
+      "type": "array",
+      "description": "Liste der Zeitfenster für ein Quartal. Muss lückenlos 00:00–24:00 abdecken.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/TimeSlot" }
+    },
+    "TimeSlot": {
+      "type": "object",
+      "required": ["from", "to", "tariff", "price_ct_kwh_net"],
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+          "description": "Beginn des Zeitfensters (HH:MM, 00:00–23:59)"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$|^24:00$",
+          "description": "Ende des Zeitfensters (HH:MM, 01:00–24:00)"
+        },
+        "tariff": {
+          "type": "string",
+          "enum": ["HT", "ST", "NT"],
+          "description": "Tarifstufe: HT=Hochtarif, ST=Standardtarif, NT=Niedertarif"
+        },
+        "price_ct_kwh_net": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50,
+          "description": "Nettobetrag in Cent/kWh"
+        }
+      }
+    }
+  }
+}

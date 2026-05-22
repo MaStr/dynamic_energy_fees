@@ -1,0 +1,113 @@
+name: Check missing next-year tariffs
+
+on:
+  # Runs every year on 1 October
+  schedule:
+    - cron: "0 8 1 10 *"
+  # Allow manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print issues without creating them)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-missing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Find operators missing next-year tariffs
+        run: node scripts/check-missing.mjs > missing.json
+
+      - name: Open GitHub issues for missing tariffs
+        uses: actions/github-script@v7
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        with:
+          script: |
+            const { nextYear, total, missing } = JSON.parse(
+              require('fs').readFileSync('missing.json', 'utf8')
+            );
+
+            console.log(`Next year: ${nextYear}`);
+            console.log(`Operators missing ${nextYear}: ${missing.length} of ${total}`);
+
+            if (process.env.DRY_RUN === 'true') {
+              console.log('Dry run – would open issues for:', missing.map(m => `${m.country}/${m.id}`));
+              return;
+            }
+
+            const existingIssues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'missing-tariff',
+            });
+            const existingTitles = new Set(existingIssues.map(i => i.title));
+
+            for (const op of missing) {
+              const title = `[${nextYear}] Tarife fehlen: ${op.name} (${op.country}/${op.id})`;
+              if (existingTitles.has(title)) {
+                console.log(`Issue already open for ${op.country}/${op.id} – skipping`);
+                continue;
+              }
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                labels: ['missing-tariff', 'help wanted'],
+                body: `## Modul-3-Tarife für ${nextYear} fehlen
+
+Für den Netzbetreiber **${op.name}** (\`${op.file}\`) liegen noch keine Tarifzeiträume für **${nextYear}** vor.
+
+### Aufgabe
+
+Bitte ergänze den Block \`"${nextYear}"\` in [\`${op.file}\`](../blob/main/${op.file}) mit den Quartalszeiten und Preisen aus dem aktuellen Preisblatt.
+
+Preisblatt: ${op.website}
+
+### Vorlage
+
+\`\`\`yaml
+  "${nextYear}":
+    Q1:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 0.00   # ← bitte ausfüllen
+      # weitere Zeitfenster …
+    Q2:
+      # …
+    Q3:
+      # …
+    Q4:
+      # …
+\`\`\`
+
+### Pflichtfelder
+
+- Alle vier Quartale (Q1–Q4)
+- Lückenlose Zeitfenster 00:00–24:00 pro Quartal
+- Preise netto in ct/kWh
+- NT muss 10–40 % des ST-Preises betragen (§14a BK8-22/010-A)
+- HT darf maximal 2× ST betragen
+
+Danke fürs Mitmachen!
+`,
+              });
+              console.log(`Opened issue for ${op.country}/${op.id}`);
+            }
