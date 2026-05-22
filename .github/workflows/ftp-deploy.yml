@@ -27,26 +27,21 @@ jobs:
       - name: Build JSON index
         run: node scripts/build-index.mjs
 
-      # Deploy dist/ (JSON-Daten + Web-Frontend)
-      - name: Deploy dist/ via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
-        with:
-          server:      ${{ secrets.FTP_HOST }}
-          username:    ${{ secrets.FTP_USERNAME }}
-          password:    ${{ secrets.FTP_PASSWORD }}
-          port:        ${{ vars.FTP_PORT }}
-          protocol:    ${{ vars.FTP_PROTOCOL }}
-          local-dir:   ./dist/
-          server-dir:  ${{ vars.FTP_SERVER_DIR }}/dist/
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
 
-      # Deploy api/ (PHP-API)
-      - name: Deploy api/ via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
-        with:
-          server:      ${{ secrets.FTP_HOST }}
-          username:    ${{ secrets.FTP_USERNAME }}
-          password:    ${{ secrets.FTP_PASSWORD }}
-          port:        ${{ vars.FTP_PORT }}
-          protocol:    ${{ vars.FTP_PROTOCOL }}
-          local-dir:   ./api/
-          server-dir:  ${{ vars.FTP_SERVER_DIR }}/api/
+      - name: Deploy via FTP
+        env:
+          FTP_HOST:       ${{ secrets.FTP_HOST }}
+          FTP_USERNAME:   ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD:   ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT:       ${{ vars.FTP_PORT }}
+          FTP_PROTOCOL:   ${{ vars.FTP_PROTOCOL }}
+          FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR }}
+        run: |
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" "$FTP_PROTOCOL://$FTP_HOST:$FTP_PORT" <<EOF
+            set ssl:verify-certificate no
+            mirror --reverse --delete --verbose dist/ $FTP_SERVER_DIR/dist/
+            mirror --reverse --delete --verbose api/  $FTP_SERVER_DIR/api/
+            bye
+          EOF
