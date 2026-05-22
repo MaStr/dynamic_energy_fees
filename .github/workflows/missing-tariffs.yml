@@ -1,16 +1,14 @@
 name: Check missing next-year tariffs
 
 on:
-  # Runs every year on 1 October
   schedule:
     - cron: "0 8 1 10 *"
-  # Allow manual trigger for testing
   workflow_dispatch:
     inputs:
       dry_run:
         description: "Dry run (print issues without creating them)"
-        required: false
-        default: "false"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -36,7 +34,7 @@ jobs:
       - name: Open GitHub issues for missing tariffs
         uses: actions/github-script@v7
         env:
-          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
         with:
           script: |
             const { nextYear, total, missing } = JSON.parse(
@@ -65,49 +63,53 @@ jobs:
                 console.log(`Issue already open for ${op.country}/${op.id} – skipping`);
                 continue;
               }
+
+              const body = [
+                `## Modul-3-Tarife für ${nextYear} fehlen`,
+                '',
+                `Für den Netzbetreiber **${op.name}** (\`${op.file}\`) liegen noch keine Tarifzeiträume für **${nextYear}** vor.`,
+                '',
+                '### Aufgabe',
+                '',
+                `Bitte ergänze den Block \`"${nextYear}"\` in [\`${op.file}\`](../blob/main/${op.file}) mit den Quartalszeiten und Preisen aus dem aktuellen Preisblatt.`,
+                '',
+                `Preisblatt: ${op.website}`,
+                '',
+                '### Vorlage',
+                '',
+                '```yaml',
+                `  "${nextYear}":`,
+                '    Q1:',
+                '      - from: "00:00"',
+                '        to: "06:00"',
+                '        tariff: NT',
+                '        price_ct_kwh_net: 0.00   # bitte ausfüllen',
+                '      # weitere Zeitfenster ...',
+                '    Q2:',
+                '      # ...',
+                '    Q3:',
+                '      # ...',
+                '    Q4:',
+                '      # ...',
+                '```',
+                '',
+                '### Pflichtfelder',
+                '',
+                '- Alle vier Quartale (Q1–Q4)',
+                '- Lückenlose Zeitfenster 00:00–24:00 pro Quartal',
+                '- Preise netto in ct/kWh',
+                '- NT muss 10–40 % des ST-Preises betragen (§14a BK8-22/010-A)',
+                '- HT darf maximal 2× ST betragen',
+                '',
+                'Danke fürs Mitmachen!',
+              ].join('\n');
+
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title,
                 labels: ['missing-tariff', 'help wanted'],
-                body: `## Modul-3-Tarife für ${nextYear} fehlen
-
-Für den Netzbetreiber **${op.name}** (\`${op.file}\`) liegen noch keine Tarifzeiträume für **${nextYear}** vor.
-
-### Aufgabe
-
-Bitte ergänze den Block \`"${nextYear}"\` in [\`${op.file}\`](../blob/main/${op.file}) mit den Quartalszeiten und Preisen aus dem aktuellen Preisblatt.
-
-Preisblatt: ${op.website}
-
-### Vorlage
-
-\`\`\`yaml
-  "${nextYear}":
-    Q1:
-      - from: "00:00"
-        to: "06:00"
-        tariff: NT
-        price_ct_kwh_net: 0.00   # ← bitte ausfüllen
-      # weitere Zeitfenster …
-    Q2:
-      # …
-    Q3:
-      # …
-    Q4:
-      # …
-\`\`\`
-
-### Pflichtfelder
-
-- Alle vier Quartale (Q1–Q4)
-- Lückenlose Zeitfenster 00:00–24:00 pro Quartal
-- Preise netto in ct/kWh
-- NT muss 10–40 % des ST-Preises betragen (§14a BK8-22/010-A)
-- HT darf maximal 2× ST betragen
-
-Danke fürs Mitmachen!
-`,
+                body,
               });
               console.log(`Opened issue for ${op.country}/${op.id}`);
             }
