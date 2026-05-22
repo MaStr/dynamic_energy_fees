@@ -10,7 +10,10 @@
  *       → diese Hilfe (JSON)
  *
  *   GET /api/?country=de&operator=syna
- *       → evcc-kompatible Preisreihe für heute + morgen (JSON Array)
+ *       → Preisreihe für die nächsten 48h (JSON Array)
+ *
+ *   GET /api/?country=de&operator=syna&next_hours=96
+ *       → Preisreihe für die nächsten 96h (1–168 möglich)
  *
  *   GET /api/?country=de&operator=syna&mode=raw
  *       → vollständige Operatordaten als JSON
@@ -18,14 +21,7 @@
  *   GET /api/?country=de&operator=syna&mode=quarter&year=2026&quarter=Q2
  *       → Slots eines einzelnen Quartals
  *
- * evcc tariff config (in evcc.yaml):
- *   tariffs:
- *     grid:
- *       type: custom
- *       forecast: http://YOUR_HOST/api/?country=de&operator=syna
- *
- * Das Format folgt dem evcc HTTP-Tarif-Interface:
- *   [ { "start": "<RFC3339>", "end": "<RFC3339>", "value": <float €/kWh> }, … ]
+ * Format: [ { "start": "<RFC3339>", "end": "<RFC3339>", "value": <float €/kWh> }, … ]
  */
 
 declare(strict_types=1);
@@ -54,7 +50,8 @@ if (empty($_GET)) {
         'endpoints'   => [
             [
                 'description' => 'Preisslots für die nächsten N Stunden (Standard: 48, max: 168)',
-                'url'         => '?country=de&operator=syna&next_hours=48',
+                'url'         => '?country=de&operator=syna',
+                'params'      => ['next_hours' => 'optional, 1–168, Standard: 48'],
                 'returns'     => '[{"start":"<RFC3339>","end":"<RFC3339>","value":<€/kWh>}, …]',
             ],
             [
@@ -72,10 +69,6 @@ if (empty($_GET)) {
                 'url'         => '(keine Parameter)',
                 'returns'     => 'Dieses Objekt',
             ],
-        ],
-        'evcc_example' => [
-            'comment' => 'evcc.yaml – Netzentgelt als HTTP-Tarif einbinden',
-            'yaml'    => "tariffs:\n  grid:\n    type: custom\n    forecast: https://YOUR_HOST/api/?country=de&operator=syna",
         ],
         'tariff_levels' => [
             'NT' => 'Niedertarif  (günstigste Stufe, 10–40 % des ST-Preises)',
@@ -148,11 +141,9 @@ if ($mode === 'quarter') {
     exit;
 }
 
-// ── Mode: evcc (default) ──────────────────────────────────────────────────────
-// Returns price slots for the next N hours (default 48) in evcc HTTP tariff format.
-// evcc expects: [{"start":"2026-01-15T00:00:00+01:00","end":"...","value":0.0871}]
-// value is in €/kWh (not ct/kWh)
-// Parameter next_hours: 1–168, default 48
+// ── Mode: slots (default) ─────────────────────────────────────────────────────
+// Preisslots für die nächsten N Stunden als JSON Array.
+// value ist in €/kWh. Parameter next_hours: 1–168, Standard 48.
 
 function quarterForMonth(int $month): string {
     return match(true) {
@@ -185,7 +176,7 @@ function buildEvccSlots(array $yamlSlots, \DateTimeImmutable $date): array {
         $result[] = [
             'start' => $startTs->format(\DateTimeInterface::RFC3339),
             'end'   => $endTs->format(\DateTimeInterface::RFC3339),
-            'value' => round($slot['price_ct_kwh_net'] / 100, 6),  // ct/kWh → €/kWh
+            'value' => round($slot['price_ct_kwh_net'] / 100, 6),
         ];
     }
 
