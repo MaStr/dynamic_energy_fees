@@ -589,7 +589,7 @@ function renderQuarterCard(q, slots) {
 // ── API section ──────────────────────────────────────────────────────────────
 function renderApiSection(op) {
   const base = window.location.hostname === 'mastr.github.io'
-    ? 'http://dynnet.aod-rpg.de/api/'
+    ? 'https://dyn-net.batcontrol.software/api/'
     : '/api/';
   const p = `country=${encodeURIComponent(op.country)}&operator=${encodeURIComponent(op.id)}`;
   const calls = [
