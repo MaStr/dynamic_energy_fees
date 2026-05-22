@@ -1,0 +1,97 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+
+  # ── 1. Build ────────────────────────────────────────────────────────────────
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate operator files
+        run: node scripts/validate.mjs
+
+      - name: Build JSON index
+        run: node scripts/build-index.mjs
+
+      - name: Copy web assets into dist/
+        run: |
+          cp -r web/* dist/
+          cp -r schema dist/schema
+
+      # Artefakt für GitHub Pages (nur dist/)
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+      # Artefakt für FTP (dist/ + api/)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ftp-bundle
+          path: |
+            dist/
+            api/
+
+  # ── 2a. Deploy → GitHub Pages ───────────────────────────────────────────────
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # ── 2b. Deploy → FTP (production server) ────────────────────────────────────
+  deploy-ftp:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ftp-bundle
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy via FTP
+        env:
+          FTP_HOST:       ${{ secrets.FTP_HOST }}
+          FTP_USERNAME:   ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD:   ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT:       ${{ vars.FTP_PORT }}
+          FTP_PROTOCOL:   ${{ vars.FTP_PROTOCOL }}
+          FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR }}
+        run: |
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" "$FTP_PROTOCOL://$FTP_HOST:$FTP_PORT" <<EOF
+            set ssl:verify-certificate no
+            mirror --reverse --delete --exclude='^api' --verbose dist/ $FTP_SERVER_DIR/
+            mirror --reverse --delete --verbose api/ $FTP_SERVER_DIR/api/
+            bye
+          EOF
