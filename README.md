@@ -12,7 +12,6 @@ Community-gepflegtes Repository mit den zeitvariablen Netzentgelten aller deutsc
 Seit April 2025 müssen alle ~860 deutschen Verteilnetzbetreiber zeitvariable Netzentgelte (Modul 3) anbieten. Die Tarife sind zwar öffentlich auf den Preisblättern der Netzbetreiber, aber nicht maschinenlesbar. Dieses Projekt sammelt sie in einem strukturierten, community-gepflegten Format – damit niemand das Rad neu erfinden muss.
 
 **Anwendungsfälle:**
-- evcc-Integration (`tariffs.grid.type: custom`)
 - Home Assistant / HEMS-Automatisierung
 - Eigene Kostenoptimierung
 
@@ -87,39 +86,6 @@ Beim Pull-Request läuft automatisch `scripts/validate.mjs` und prüft:
 2. Pull-Request öffnen
 3. Validation-Workflow prüft die Datei automatisch
 4. Nach Merge: Seite wird automatisch neu gebaut und deployed
-
----
-
-## evcc-Integration
-
-Falls du einen eigenen PHP-Server betreibst (`api/index.php`):
-
-```yaml
-# evcc.yaml
-tariffs:
-  grid:
-    type: custom
-    forecast: https://YOUR_HOST/api/?country=de&operator=syna
-```
-
-Der Endpoint gibt die Preisslots für heute + morgen im evcc-Format zurück:
-
-```json
-[
-  { "start": "2026-01-15T00:00:00+01:00",
-    "end":   "2026-01-15T06:00:00+01:00",
-    "value": 0.0261 },
-  ...
-]
-```
-
-### Weitere API-Modi
-
-| URL | Beschreibung |
-|-----|-------------|
-| `?country=de&operator=syna` | evcc-Format (heute + morgen) |
-| `?country=de&operator=syna&mode=raw` | Vollständige Operatordaten |
-| `?country=de&operator=syna&mode=quarter&year=2026&quarter=Q2` | Einzelnes Quartal |
 
 ---
 
