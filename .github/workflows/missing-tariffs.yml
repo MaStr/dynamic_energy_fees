@@ -2,7 +2,7 @@ name: Check missing next-year tariffs
 
 on:
   schedule:
-    - cron: "0 8 1 10 *"
+    - cron: "0 8 11 11 *"
   workflow_dispatch:
     inputs:
       dry_run:
