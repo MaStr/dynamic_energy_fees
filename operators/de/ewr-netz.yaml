@@ -3,7 +3,7 @@
 # Quelle: https://www.ewr-netz.de/fileadmin/data/downloads/Unternehmen/Veroeffentlichungspflichten/Netzkosten/Preisblaetter/Strom/EWR_Netz_GmbH_Preisblatt_NE-Strom_26_end%C3%BCltig_20260507.pdf
 # Letzte Aktualisierung: 2026-05-07
 
-id: ewr_netz
+id: ewr-netz
 name: "EWR Netz GmbH"
 website: "https://www.ewr-netz.de"
 regions:
