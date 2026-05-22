@@ -18,8 +18,10 @@
 - [ ] Alle vier Quartale vorhanden (Q1–Q4)
 - [ ] Zeitfenster lückenlos von `00:00` bis `24:00` pro Quartal
 - [ ] Preise sind **Netto** in **ct/kWh**
-- [ ] NT-Preis beträgt 10–40 % des ST-Preises (§14a BK8-22/010-A)
-- [ ] HT-Preis beträgt maximal 2× ST (§14a BK8-22/010-A)
+
+**Nur für 🇩🇪 DE (§14a BK8-22/010-A)**
+- [ ] NT-Preis beträgt 10–40 % des ST-Preises
+- [ ] HT-Preis beträgt maximal 2× ST
 - [ ] HT ist mindestens 2 h/Tag aktiv (falls HT vorhanden)
 
 **Datei**

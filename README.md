@@ -69,14 +69,14 @@ tariffs:
 
 Beim Pull-Request läuft automatisch `scripts/validate.mjs` und prüft:
 
-| Regel | Quelle |
-|-------|--------|
-| Zeitfenster lückenlos 00:00–24:00 | –  |
-| HT muss ≥ 2 h/Tag aktiv sein | §14a BK8-22/010-A |
-| NT muss 10–40 % von ST betragen | §14a BK8-22/010-A |
-| HT darf maximal 2× ST betragen | §14a BK8-22/010-A |
-| `id` muss mit Dateiname übereinstimmen | – |
-| Datei liegt unter `operators/<country>/` | – |
+| Regel | Länder | Quelle |
+|-------|--------|--------|
+| Zeitfenster lückenlos 00:00–24:00 | alle | – |
+| `id` muss mit Dateiname übereinstimmen | alle | – |
+| Datei liegt unter `operators/<country>/` | alle | – |
+| HT muss ≥ 2 h/Tag aktiv sein | 🇩🇪 DE | §14a BK8-22/010-A |
+| NT muss 10–40 % von ST betragen | 🇩🇪 DE | §14a BK8-22/010-A |
+| HT darf maximal 2× ST betragen | 🇩🇪 DE | §14a BK8-22/010-A |
 
 ---
 
