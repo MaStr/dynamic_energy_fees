@@ -36,7 +36,7 @@ header('Cache-Control: public, max-age=3600');
 
 // ── Config ────────────────────────────────────────────────────────────────────
 
-const DATA_DIR = __DIR__ . '/../dist/operators';   // built by build-index.mjs
+const DATA_DIR = __DIR__ . '/../operators';   // built by build-index.mjs, deployed to server root
 const ALLOWED_COUNTRIES = ['de', 'at', 'ch'];
 const REPO_URL = 'https://github.com/MaStr/dynamic_energy_fees';
 const WEB_URL  = 'https://mastr.github.io/dynamic_energy_fees';

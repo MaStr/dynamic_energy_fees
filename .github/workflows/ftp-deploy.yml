@@ -46,7 +46,7 @@ jobs:
         run: |
           lftp -u "$FTP_USERNAME,$FTP_PASSWORD" "$FTP_PROTOCOL://$FTP_HOST:$FTP_PORT" <<EOF
             set ssl:verify-certificate no
-            mirror --reverse --delete --verbose dist/ $FTP_SERVER_DIR/dist/
-            mirror --reverse --delete --verbose api/  $FTP_SERVER_DIR/api/
+            mirror --reverse --delete --exclude='^api' --verbose dist/ $FTP_SERVER_DIR/
+            mirror --reverse --delete --verbose api/ $FTP_SERVER_DIR/api/
             bye
           EOF
