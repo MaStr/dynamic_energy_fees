@@ -26,6 +26,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/lib.php';
+
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Cache-Control: public, max-age=3600');
@@ -145,64 +147,10 @@ if ($mode === 'quarter') {
 // Preisslots für die nächsten N Stunden als JSON Array.
 // value ist in €/kWh. Parameter next_hours: 1–168, Standard 48.
 
-function quarterForMonth(int $month): string {
-    return match(true) {
-        $month <= 3  => 'Q1',
-        $month <= 6  => 'Q2',
-        $month <= 9  => 'Q3',
-        default      => 'Q4',
-    };
-}
-
-function slotsForDate(array $tariffs, \DateTimeImmutable $date): array {
-    $y = (int)$date->format('Y');
-    $q = quarterForMonth((int)$date->format('n'));
-    return $tariffs[(string)$y][$q] ?? [];
-}
-
-function buildEvccSlots(array $yamlSlots, \DateTimeImmutable $date): array {
-    $result = [];
-    $tz = $date->getTimezone();
-    $dateStr = $date->format('Y-m-d');
-
-    foreach ($yamlSlots as $slot) {
-        $startTs = new \DateTimeImmutable("{$dateStr}T{$slot['from']}:00", $tz);
-        if ($slot['to'] === '24:00') {
-            $endTs = (new \DateTimeImmutable("{$dateStr}T00:00:00", $tz))->modify('+1 day');
-        } else {
-            $endTs = new \DateTimeImmutable("{$dateStr}T{$slot['to']}:00", $tz);
-        }
-
-        $result[] = [
-            'start' => $startTs->format(\DateTimeInterface::RFC3339),
-            'end'   => $endTs->format(\DateTimeInterface::RFC3339),
-            'value' => round($slot['price_ct_kwh_net'] / 100, 6),
-        ];
-    }
-
-    return $result;
-}
-
-$tz      = new \DateTimeZone('Europe/Berlin');
-$now     = new \DateTimeImmutable('now', $tz);
-$today   = new \DateTimeImmutable('today', $tz);
-$until   = $now->modify("+{$nextHours} hours");
-$tariffs = $data['tariffs'] ?? [];
-
-// Generate enough full days to cover the requested horizon
-$daysNeeded = (int)ceil($nextHours / 24) + 1;
-$allSlots   = [];
-for ($i = 0; $i < $daysNeeded; $i++) {
-    $date      = $today->modify("+{$i} days");
-    $allSlots  = array_merge($allSlots, buildEvccSlots(slotsForDate($tariffs, $date), $date));
-}
-
-// Keep only slots that overlap with [now, now+next_hours]
-$evccSlots = array_values(array_filter($allSlots, function (array $slot) use ($now, $until): bool {
-    $start = new \DateTimeImmutable($slot['start']);
-    $end   = new \DateTimeImmutable($slot['end']);
-    return $end > $now && $start < $until;
-}));
+$tz        = new \DateTimeZone('Europe/Berlin');
+$now       = new \DateTimeImmutable('now', $tz);
+$tariffs   = $data['tariffs'] ?? [];
+$evccSlots = buildSlotsForRange($tariffs, $now, $nextHours);
 
 if (empty($evccSlots)) {
     http_response_code(404);
