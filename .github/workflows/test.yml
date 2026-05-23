@@ -1,0 +1,48 @@
+name: Test API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - "tests/**"
+      - "composer.json"
+      - "composer.lock"
+      - "phpunit.xml"
+  pull_request:
+    paths:
+      - "api/**"
+      - "tests/**"
+      - "composer.json"
+      - "composer.lock"
+      - "phpunit.xml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --colors=always
+
+      - name: Comment on PR (on failure)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "❌ **API-Tests fehlgeschlagen.** Bitte prüfe die Workflow-Logs.\n\nHäufige Ursachen:\n- Quartalsgrenzen nicht korrekt behandelt (z.B. 31. März → 1. April)\n- Jahreswechsel-Logik fehlerhaft\n- DST-Umstellung nicht berücksichtigt\n- `24:00`-Slot wird nicht korrekt als Folgetag 00:00 dargestellt\n- Wertumrechnung ct/kWh → €/kWh falsch"
+            })
