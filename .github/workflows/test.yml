@@ -17,6 +17,10 @@ on:
       - "composer.lock"
       - "phpunit.xml"
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   test:
     runs-on: ubuntu-latest

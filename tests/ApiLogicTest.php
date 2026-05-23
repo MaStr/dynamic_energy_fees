@@ -252,10 +252,10 @@ final class ApiLogicTest extends TestCase
         $result = buildEvccSlots($slots, $date);
 
         foreach ($result as $slot) {
-            $start = new \DateTimeImmutable($slot['start']);
-            $end   = new \DateTimeImmutable($slot['end']);
-            self::assertLessThan($end->getTimestamp(), $start->getTimestamp() + 1);
-            self::assertGreaterThan($start->getTimestamp(), $end->getTimestamp());
+            $start        = new \DateTimeImmutable($slot['start']);
+            $end          = new \DateTimeImmutable($slot['end']);
+            $durationSecs = $end->getTimestamp() - $start->getTimestamp();
+            self::assertGreaterThan(0, $durationSecs, 'end must be strictly after start');
         }
     }
 
@@ -423,16 +423,13 @@ final class ApiLogicTest extends TestCase
         $result  = buildSlotsForRange($tariffs, $now, 1);
 
         self::assertNotEmpty($result);
-        // Alle Slots enden nach now
-        foreach ($result as $slot) {
-            $end = new \DateTimeImmutable($slot['end']);
-            self::assertGreaterThan($now->getTimestamp(), $end->getTimestamp());
-        }
-        // Alle Slots starten vor now+1h
         $until = $now->modify('+1 hour');
         foreach ($result as $slot) {
             $start = new \DateTimeImmutable($slot['start']);
-            self::assertLessThan($until->getTimestamp(), $start->getTimestamp() + 1);
+            $end   = new \DateTimeImmutable($slot['end']);
+            // slot must overlap with [now, now+1h]: end > now AND start < until
+            self::assertGreaterThan($now->getTimestamp(), $end->getTimestamp(), 'slot must not have expired before now');
+            self::assertLessThan($until->getTimestamp(), $start->getTimestamp(), 'slot must start before the window closes');
         }
     }
 
