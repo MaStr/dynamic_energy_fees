@@ -329,7 +329,6 @@ final class ApiLogicTest extends TestCase
         $result = buildSlotsForRange($tariffs, $now, 48);
 
         // Muss Slots aus Q1 (winterDay) und Q2 (summerDay) enthalten
-        $tariffTypes = array_unique(array_column($result, 'value'));
         // Q1-NT = 0.02 €/kWh, Q1-HT = 0.18, Q2-ST = 0.10
         $values = array_unique(array_column($result, 'value'));
         sort($values);
