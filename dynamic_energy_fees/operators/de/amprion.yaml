@@ -1,0 +1,53 @@
+id: amprion
+name: Amprion (Modul 3 Anreizmodul)
+website: https://www.amprion.net
+regions:
+  - DE
+tariffs:
+  "2026":
+    Q1:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 3.85
+      - from: "06:00"
+        to: "10:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+      - from: "19:30"
+        to: "00:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+      - from: "10:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 11.63
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+    Q4:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 3.85
+      - from: "06:00"
+        to: "10:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+      - from: "19:30"
+        to: "00:00"
+        tariff: ST
+        price_ct_kwh_net: 9.63
+      - from: "10:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 11.63
+# source: amprion_3.pdf
+# HT/NT nur in Q1 und Q4. ST in Q2/Q3 ganztägig.

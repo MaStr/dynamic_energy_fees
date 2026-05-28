@@ -1,0 +1,53 @@
+id: enbw
+name: EnBW (Preisblatt Netzentgelte Strom 2025)
+website: https://www.enbw.com
+regions:
+  - DE
+tariffs:
+  "2026":
+    Q1:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 3.54
+      - from: "06:00"
+        to: "15:30"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+      - from: "21:45"
+        to: "00:00"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+      - from: "15:30"
+        to: "21:45"
+        tariff: HT
+        price_ct_kwh_net: 17.72
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+    Q3:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 3.54
+      - from: "06:00"
+        to: "15:30"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+      - from: "21:45"
+        to: "00:00"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+      - from: "15:30"
+        to: "21:45"
+        tariff: HT
+        price_ct_kwh_net: 17.72
+    Q4:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.86
+# source: enbw_1.pdf
+# Ab 01.04.2025. HT/NT nur in Q1 und Q3. Grundpreis 70,00 €/a (nicht in Quartalsliste enthalten). ST gilt in übrigen Zeiten.

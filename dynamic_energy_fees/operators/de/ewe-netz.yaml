@@ -1,0 +1,77 @@
+id: ewe-netz
+name: EWE NETZ GmbH (Modul 3)
+website: https://www.ewe-netz.de
+regions:
+  - DE
+tariffs:
+  "2026":
+    Q1:
+      - from: "23:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.32
+      - from: "05:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "20:30"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "16:30"
+        to: "20:30"
+        tariff: HT
+        price_ct_kwh_net: 5.62
+    Q2:
+      - from: "23:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.32
+      - from: "05:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "20:30"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "16:30"
+        to: "20:30"
+        tariff: HT
+        price_ct_kwh_net: 5.62
+    Q3:
+      - from: "23:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.32
+      - from: "05:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "20:30"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "16:30"
+        to: "20:30"
+        tariff: HT
+        price_ct_kwh_net: 5.62
+    Q4:
+      - from: "23:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.32
+      - from: "05:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "20:30"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 3.2
+      - from: "16:30"
+        to: "20:30"
+        tariff: HT
+        price_ct_kwh_net: 5.62
+# source: ewe-netz_1.pdf
+# Quartalsunterschiede nicht explizit ausgewiesen; alle Quartale identisch laut Preisblatt.
