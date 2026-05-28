@@ -1,0 +1,59 @@
+id: netze-bw
+name: Netze BW GmbH
+website: https://www.netze-bw.de
+regions:
+- DE
+tariffs:
+  '2026':
+    Q1:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q2:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q3:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q4:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
