@@ -1,0 +1,59 @@
+id: 50hertz
+name: EG-TS (Stadtbremischer Überseehafen - Bremerhaven)
+website: https://www1.eurogate.de
+regions:
+- DE
+tariffs:
+  '2026':
+    Q1:
+    - from: 01:00
+      to: 03:00
+      tariff: NT
+      price_ct_kwh_net: 2.6
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.5
+    - from: 06:00
+      to: 09:00
+      tariff: HT
+      price_ct_kwh_net: 8.45
+    Q2:
+    - from: 01:00
+      to: 03:00
+      tariff: NT
+      price_ct_kwh_net: 2.6
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.5
+    - from: 06:00
+      to: 09:00
+      tariff: HT
+      price_ct_kwh_net: 8.45
+    Q3:
+    - from: 01:00
+      to: 03:00
+      tariff: NT
+      price_ct_kwh_net: 2.6
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.5
+    - from: 06:00
+      to: 09:00
+      tariff: HT
+      price_ct_kwh_net: 8.45
+    Q4:
+    - from: 01:00
+      to: 03:00
+      tariff: NT
+      price_ct_kwh_net: 2.6
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.5
+    - from: 06:00
+      to: 09:00
+      tariff: HT
+      price_ct_kwh_net: 8.45
