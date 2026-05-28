@@ -1,0 +1,75 @@
+id: stadtwerke-berlin
+name: Stadtwerke Berlin (Stromnetz Berlin)
+website: https://www.stromnetz.berlin
+regions:
+- DE
+tariffs:
+  '2026':
+    Q1:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 12.75
+    - from: '11:00'
+      to: '15:00'
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: '23:00'
+      to: 06:00
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.64
+    Q2:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 12.75
+    - from: '11:00'
+      to: '15:00'
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: '23:00'
+      to: 06:00
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.64
+    Q3:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 12.75
+    - from: '11:00'
+      to: '15:00'
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: '23:00'
+      to: 06:00
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.64
+    Q4:
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 12.75
+    - from: '11:00'
+      to: '15:00'
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: '23:00'
+      to: 06:00
+      tariff: NT
+      price_ct_kwh_net: 1.99
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 6.64
