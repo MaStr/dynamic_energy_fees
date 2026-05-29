@@ -1,0 +1,94 @@
+id: netze-bw
+name: Netze BW GmbH
+website: https://www.netze-bw.de
+# https://assets.cdn.netze-bw.de/xytfb1vrn7of/7eQvxehZzn3ECbR9rALmyD/ecc795b9dcd666ce1f53d9d04362a321/netzentgelte-strom-netze-bw-gmbh-2026.pdf?_gl=1*5w4t0e*_ga*MjgxNjAxNjkyLjE3ODAwNzY1MTA.*_ga_R7Q9B2D3JJ*czE3ODAwNzY1MDkkbzEkZzEkdDE3ODAwNzY2ODUkajE3JGwwJGgxMDY1MzM3Nzk.
+
+regions:
+- Baden-Württemberg
+
+tariffs:
+  '2026':
+    Q1:
+    - from: 00:00
+      to: '10:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: '14:00'
+      to: '17:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '22:00'
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q2:
+    - from: 00:00
+      to: '10:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: '14:00'
+      to: '17:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '22:00'
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q3:
+    - from: 00:00
+      to: '10:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: '14:00'
+      to: '17:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '22:00'
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    Q4:
+    - from: 00:00
+      to: '10:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '10:00'
+      to: '14:00'
+      tariff: NT
+      price_ct_kwh_net: 3.03
+    - from: '14:00'
+      to: '17:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
+    - from: '17:00'
+      to: '22:00'
+      tariff: HT
+      price_ct_kwh_net: 11.06
+    - from: '22:00'
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 7.57
