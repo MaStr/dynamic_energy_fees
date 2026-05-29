@@ -1,0 +1,93 @@
+id: stadtwerke-berlin
+name: Stadtwerke Berlin (Stromnetz Berlin)
+website: https://www.stromnetz.berlin
+# https://www.stromnetz.berlin/files/globalassets/dokumente/entgelte/zugang/entgelte-01-01-2026/nne-b-2026_20260522.pdf
+regions:
+  - Berlin
+
+tariffs:
+  '2026':
+    Q1:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+      - from: "06:30"
+        to: "17:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "17:15"
+        to: "20:15"
+        tariff: HT
+        price_ct_kwh_net: 13.94
+      - from: "20:15"
+        to: "22:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "22:15"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+    Q2:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+      - from: "06:30"
+        to: "17:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "17:15"
+        to: "20:15"
+        tariff: HT
+        price_ct_kwh_net: 13.94
+      - from: "20:15"
+        to: "22:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "22:15"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+    Q3:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+      - from: "06:30"
+        to: "17:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "17:15"
+        to: "20:15"
+        tariff: HT
+        price_ct_kwh_net: 13.94
+      - from: "20:15"
+        to: "22:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "22:15"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+    Q4:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 2.61
+      - from: "06:30"
+        to: "17:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "17:15"
+        to: "20:15"
+        tariff: HT
+        price_ct_kwh_net: 13.94
+      - from: "20:15"
+        to: "22:15"
+        tariff: ST
+        price_ct_kwh_net: 7.46
+      - from: "22:15"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.61
