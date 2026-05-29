@@ -47,6 +47,11 @@ function validateQuarter(slots, label, errors, country) {
     (a, b) => timeToMinutes(a.from) - timeToMinutes(b.from)
   );
 
+  if (sorted.length === 0) {
+    errors.push(`${label}: no time slots defined`);
+    return;
+  }
+
   // Coverage check: applies to all countries
   if (sorted[0].from !== "00:00") {
     errors.push(`${label}: first slot must start at 00:00 (got ${sorted[0].from})`);
@@ -73,6 +78,12 @@ function validateQuarter(slots, label, errors, country) {
 
     const prices = { HT: [], ST: [], NT: [] };
     for (const s of sorted) {
+      if (!Object.prototype.hasOwnProperty.call(prices, s.tariff)) {
+        errors.push(
+          `${label}: invalid or missing tariff in slot ${s.from}-${s.to}`
+        );
+        continue;
+      }
       prices[s.tariff].push(s.price_ct_kwh_net);
     }
 
