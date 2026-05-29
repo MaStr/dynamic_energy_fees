@@ -18,6 +18,7 @@ tariffs:
         price_ct_kwh_net: 7.46
       - from: "17:15"
         to: "20:15"
+        tariff: HT
         price_ct_kwh_net: 13.94
       - from: "20:15"
         to: "22:15"
@@ -38,6 +39,7 @@ tariffs:
         price_ct_kwh_net: 7.46
       - from: "17:15"
         to: "20:15"
+        tariff: HT
         price_ct_kwh_net: 13.94
       - from: "20:15"
         to: "22:15"
@@ -58,6 +60,7 @@ tariffs:
         price_ct_kwh_net: 7.46
       - from: "17:15"
         to: "20:15"
+        tariff: HT
         price_ct_kwh_net: 13.94
       - from: "20:15"
         to: "22:15"
@@ -78,6 +81,7 @@ tariffs:
         price_ct_kwh_net: 7.46
       - from: "17:15"
         to: "20:15"
+        tariff: HT
         price_ct_kwh_net: 13.94
       - from: "20:15"
         to: "22:15"
