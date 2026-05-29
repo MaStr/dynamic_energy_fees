@@ -1,8 +1,11 @@
 id: netze-bw
 name: Netze BW GmbH
 website: https://www.netze-bw.de
+# https://assets.cdn.netze-bw.de/xytfb1vrn7of/7eQvxehZzn3ECbR9rALmyD/ecc795b9dcd666ce1f53d9d04362a321/netzentgelte-strom-netze-bw-gmbh-2026.pdf?_gl=1*5w4t0e*_ga*MjgxNjAxNjkyLjE3ODAwNzY1MTA.*_ga_R7Q9B2D3JJ*czE3ODAwNzY1MDkkbzEkZzEkdDE3ODAwNzY2ODUkajE3JGwwJGgxMDY1MzM3Nzk.
+
 regions:
-- DE
+- Baden-Württemberg
+
 tariffs:
   '2026':
     Q1:
