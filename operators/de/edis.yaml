@@ -1,0 +1,77 @@
+id: edis
+name: E.DIS Netz GmbH
+website: https://www.e-dis-netz.de
+# https://www.e-dis-netz.de/content/dam/revu-global/e-dis-netz/dokumente/Preisblaetter_Netzentgelte_Strom_20260101.pdf
+regions:
+- Brandenburg
+- Mecklenburg-Vorpommern
+tariffs:
+  '2026':
+    Q1:
+    - from: 00:00
+      to: 05:00
+      tariff: NT
+      price_ct_kwh_net: 0.55
+    - from: 05:00
+      to: '10:15'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '10:15'
+      to: '12:00'
+      tariff: HT
+      price_ct_kwh_net: 8.8
+    - from: '12:00'
+      to: '16:45'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '16:45'
+      to: '20:15'
+      tariff: HT
+      price_ct_kwh_net: 8.8
+    - from: '20:15'
+      to: '23:30'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '23:30'
+      to: '24:00'
+      tariff: NT
+      price_ct_kwh_net: 0.55
+    Q2:
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    Q3:
+    - from: 00:00
+      to: '24:00'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    Q4:
+    - from: 00:00
+      to: 05:00
+      tariff: NT
+      price_ct_kwh_net: 0.55
+    - from: 05:00
+      to: '10:15'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '10:15'
+      to: '12:00'
+      tariff: HT
+      price_ct_kwh_net: 8.8
+    - from: '12:00'
+      to: '16:45'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '16:45'
+      to: '20:15'
+      tariff: HT
+      price_ct_kwh_net: 8.8
+    - from: '20:15'
+      to: '23:30'
+      tariff: ST
+      price_ct_kwh_net: 5.47
+    - from: '23:30'
+      to: '24:00'
+      tariff: NT
+      price_ct_kwh_net: 0.55
