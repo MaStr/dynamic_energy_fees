@@ -2,7 +2,9 @@ id: avacon
 name: Avacon Netz GmbH (AVANG)
 website: https://www.avacon-netz.de
 regions:
-- DE
+- Niedersachsen
+- Sachsen-Anhalt
+- Hessen
 tariffs:
   '2026':
     Q1:
