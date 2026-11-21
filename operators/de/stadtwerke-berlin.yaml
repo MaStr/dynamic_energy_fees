@@ -92,8 +92,8 @@ tariffs:
         tariff: NT
         price_ct_kwh_net: 2.61
   "2027":
-    # Quelle: https://www.stromnetz.berlin/files/globalassets/dokumente/entgelte/zugang/entgelte-01-01-2027/voraussichtliche-nne-b-2027_20261014.pdf
-    # (vorläufig, Version 14.10.2026, Netto-Spalte)
+    # VORLÄUFIG (Veröffentlichung nach § 20 Abs. 1 EnWG) – endgültige Werte folgen zum Jahresende; 2027 in allen Quartalen (keine Quartalsbeschränkung im Preisblatt)
+    # Stand 2027: Version 14.10.2026, Netto-Spalte; Quelle: https://www.stromnetz.berlin/files/globalassets/dokumente/entgelte/zugang/entgelte-01-01-2027/voraussichtliche-nne-b-2027_20261014.pdf
     Q1:
       - from: "00:00"
         to: "06:00"

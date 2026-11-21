@@ -81,8 +81,8 @@ tariffs:
         tariff: NT
         price_ct_kwh_net: 1.10
   "2027":
-    # Quelle: https://www.ggv-energie.de/cms/netz/netznutzung/GGV_Netznutzungsentgelte_2027_vorlaeufig.pdf (vorläufig, Preisblatt 3)
-    # Zeitfenster gelten täglich ganzjährig (01.01.-31.12.2027)
+    # VORLÄUFIG (Veröffentlichung nach § 20 Abs. 1 EnWG) – endgültige Werte folgen zum Jahresende; 2027 ganzjährig
+    # Preisblatt 3; Quelle: https://www.ggv-energie.de/cms/netz/netznutzung/GGV_Netznutzungsentgelte_2027_vorlaeufig.pdf
     Q1:
       - from: "00:00"
         to: "06:00"
