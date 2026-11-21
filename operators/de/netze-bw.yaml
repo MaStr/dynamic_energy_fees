@@ -93,8 +93,7 @@ tariffs:
       tariff: ST
       price_ct_kwh_net: 7.57
   "2027":
-    # Quelle: https://assets.cdn.netze-bw.de/xytfb1vrn7of/7n2uyuVHCiQYxVweEU4nhE/a8227175b44afc1384beb9c3a535483b/vorlaeufige-netzentgelte-strom-2027-stand-20261026.pdf
-    # (vorläufig, Version 1.1 vom 26.10.2026; Modul 3 gilt in Q1–Q4)
+    # VORLÄUFIG (Veröffentlichung nach § 20 Abs. 1 EnWG) – endgültige Werte folgen zum Jahresende; Quelle: https://assets.cdn.netze-bw.de/xytfb1vrn7of/7n2uyuVHCiQYxVweEU4nhE/a8227175b44afc1384beb9c3a535483b/vorlaeufige-netzentgelte-strom-2027-stand-20261026.pdf
     Q1:
       - from: "00:00"
         to: "10:00"

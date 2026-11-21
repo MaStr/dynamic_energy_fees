@@ -1,0 +1,97 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Energie Waldeck-Frankenberg GmbH
+# Quelle 2026: https://www.ewf.de/fileadmin/user_upload/netz/strom/20251231_EWF_Strom_01_Netznutzungsentgelte_2026_final.pdf
+# Stand 2026: final, gültig ab 01.01.2026
+
+id: ewf
+name: "Energie Waldeck-Frankenberg GmbH"
+website: "https://www.ewf.de"
+regions:
+  - Hessen
+
+tariffs:
+  "2026":
+    Q1:
+      - from: "00:00"
+        to: "00:15"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "00:15"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 0.59
+      - from: "06:30"
+        to: "11:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "11:00"
+        to: "15:00"
+        tariff: HT
+        price_ct_kwh_net: 10.08
+      - from: "15:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+    Q2:
+      - from: "00:00"
+        to: "00:15"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "00:15"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 0.59
+      - from: "06:30"
+        to: "11:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "11:00"
+        to: "15:00"
+        tariff: HT
+        price_ct_kwh_net: 10.08
+      - from: "15:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+    Q3:
+      - from: "00:00"
+        to: "00:15"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "00:15"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 0.59
+      - from: "06:30"
+        to: "11:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "11:00"
+        to: "15:00"
+        tariff: HT
+        price_ct_kwh_net: 10.08
+      - from: "15:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+    Q4:
+      - from: "00:00"
+        to: "00:15"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "00:15"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 0.59
+      - from: "06:30"
+        to: "11:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89
+      - from: "11:00"
+        to: "15:00"
+        tariff: HT
+        price_ct_kwh_net: 10.08
+      - from: "15:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.89

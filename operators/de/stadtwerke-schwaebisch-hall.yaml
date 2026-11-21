@@ -1,0 +1,106 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Stadtwerke Schwäbisch Hall GmbH
+# Quelle 2026: https://stadtwerke-hall.de/fileadmin/files/Downloads/Netzdaten_Strom/4_Netzentgelte/4NNE_STW-SHA_ab_01.01.2026.pdf
+# Stand 2026: gültig ab 01.01.2026
+
+id: stadtwerke-schwaebisch-hall
+name: "Stadtwerke Schwäbisch Hall GmbH"
+website: "https://stadtwerke-hall.de"
+regions:
+  - Baden-Württemberg
+
+tariffs:
+  "2026":
+    # HT/NT im 1., 2. und 4. Quartal, im 3. Quartal ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "07:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11
+      - from: "07:00"
+        to: "10:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "10:00"
+        to: "14:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "14:00"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "20:00"
+        to: "22:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "22:00"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11
+    Q2:
+      - from: "00:00"
+        to: "07:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11
+      - from: "07:00"
+        to: "10:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "10:00"
+        to: "14:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "14:00"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "20:00"
+        to: "22:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "22:00"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+    Q4:
+      - from: "00:00"
+        to: "07:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11
+      - from: "07:00"
+        to: "10:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "10:00"
+        to: "14:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "14:00"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 8.14
+      - from: "20:00"
+        to: "22:00"
+        tariff: ST
+        price_ct_kwh_net: 5.53
+      - from: "22:00"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.11

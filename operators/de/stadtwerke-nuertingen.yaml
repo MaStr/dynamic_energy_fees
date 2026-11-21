@@ -1,0 +1,66 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Stadtwerke Nürtingen GmbH
+# Quelle 2026: https://www.sw-nuertingen.de/_Resources/Persistent/0/c/f/0/0cf05a8e07cb8dfe3f1c407331114f4aeb185323/Preisblatt%20Netzentgelte%20Strom%202026.pdf
+# Stand 2026: gültig ab 01.01.2026
+
+id: stadtwerke-nuertingen
+name: "Stadtwerke Nürtingen GmbH"
+website: "https://www.sw-nuertingen.de"
+regions:
+  - Baden-Württemberg
+
+tariffs:
+  "2026":
+    # HT/NT nur im 1. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "01:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+      - from: "01:00"
+        to: "07:00"
+        tariff: NT
+        price_ct_kwh_net: 3.36
+      - from: "07:00"
+        to: "19:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+      - from: "19:00"
+        to: "22:00"
+        tariff: HT
+        price_ct_kwh_net: 10.54
+      - from: "22:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+    Q4:
+      - from: "00:00"
+        to: "01:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+      - from: "01:00"
+        to: "07:00"
+        tariff: NT
+        price_ct_kwh_net: 3.36
+      - from: "07:00"
+        to: "19:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4
+      - from: "19:00"
+        to: "22:00"
+        tariff: HT
+        price_ct_kwh_net: 10.54
+      - from: "22:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.4

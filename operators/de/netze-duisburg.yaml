@@ -1,0 +1,58 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Netze Duisburg GmbH
+# Quelle: https://www.netze-duisburg.de/fileadmin/user_upload/Netz_nutzen/Netzentgelte/Strom/251215_Netze_Duisburg_-_Preisblatt_Strom_2026_Final.pdf
+# Stand Preisblatt: 15.12.2025 (final), gültig ab 01.01.2026
+
+id: netze-duisburg
+name: "Netze Duisburg GmbH"
+website: "https://www.netze-duisburg.de"
+regions:
+  - Nordrhein-Westfalen
+
+tariffs:
+  "2026":
+    # HT/NT nur im 1. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 2.09
+      - from: "06:00"
+        to: "14:15"
+        tariff: ST
+        price_ct_kwh_net: 6.94
+      - from: "14:15"
+        to: "18:45"
+        tariff: HT
+        price_ct_kwh_net: 9.77
+      - from: "18:45"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 6.94
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 6.94
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 6.94
+    Q4:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 2.09
+      - from: "06:00"
+        to: "14:15"
+        tariff: ST
+        price_ct_kwh_net: 6.94
+      - from: "14:15"
+        to: "18:45"
+        tariff: HT
+        price_ct_kwh_net: 9.77
+      - from: "18:45"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 6.94

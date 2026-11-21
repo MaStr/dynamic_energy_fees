@@ -1,0 +1,82 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Stadtwerke Homburg GmbH
+# Quelle 2026: https://www.stadtwerke-homburg.de/fileadmin/dokumente/Netze/Stromnetz/Netzentgelte/2026/20260101_STROM_01_Netzentgelte_SWH_2026.pdf
+# Stand 2026: 01.01.2026
+
+id: stadtwerke-homburg
+name: "Stadtwerke Homburg GmbH"
+website: "https://www.stadtwerke-homburg.de"
+regions:
+  - Saarland
+
+tariffs:
+  "2026":
+    # HT/NT nur im 1. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 3.33
+      - from: "06:30"
+        to: "11:30"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "11:30"
+        to: "12:30"
+        tariff: HT
+        price_ct_kwh_net: 12.42
+      - from: "12:30"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 12.42
+      - from: "20:00"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "23:00"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 3.33
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+    Q4:
+      - from: "00:00"
+        to: "06:30"
+        tariff: NT
+        price_ct_kwh_net: 3.33
+      - from: "06:30"
+        to: "11:30"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "11:30"
+        to: "12:30"
+        tariff: HT
+        price_ct_kwh_net: 12.42
+      - from: "12:30"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 12.42
+      - from: "20:00"
+        to: "23:00"
+        tariff: ST
+        price_ct_kwh_net: 8.34
+      - from: "23:00"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 3.33

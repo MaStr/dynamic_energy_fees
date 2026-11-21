@@ -1,0 +1,154 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Badenova Netze GmbH
+# Quelle 2026: https://a.storyblok.com/f/307935/x/d69043aead/nne_strom_2026_preisblatt_final.pdf
+# Stand 2026: final, gültig ab 01.01.2026
+# Quelle 2027: https://a.storyblok.com/f/307935/x/a192bdfc3e/nne_strom_2027_preisblatt_vorlaufig.pdf
+# Stand 2027: vorläufig zum 15.10.2026
+
+id: badenova-netze
+name: "Badenova Netze GmbH"
+website: "https://badenovanetze.de"
+regions:
+  - Baden-Württemberg
+
+tariffs:
+  "2026":
+    # HT/NT nur im 1. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 2.51
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 8.75
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.51
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+    Q4:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 2.51
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 8.75
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 7.29
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 2.51
+  "2027":
+    # VORLÄUFIG (Veröffentlichung nach § 20 Abs. 1 EnWG) – endgültige Werte folgen zum Jahresende; 2027 in allen Quartalen
+    Q1:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 11.35
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+    Q2:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 11.35
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+    Q3:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 11.35
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+    Q4:
+      - from: "00:00"
+        to: "07:30"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "07:30"
+        to: "08:00"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "08:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 11.35
+      - from: "21:00"
+        to: "22:30"
+        tariff: ST
+        price_ct_kwh_net: 8.41
+      - from: "22:30"
+        to: "24:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
