@@ -1,0 +1,129 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: SWP Stadtwerke Pforzheim GmbH & Co. KG
+# Quelle: https://www.stadtwerke-pforzheim.de/fileadmin/user_upload/Downloads/Netze/Netznutzung_Strom/SWP_Preisblatt_2026_Strom.pdf
+# Stand Preisblatt: 15.12.2025, gültig ab 01.01.2026
+
+id: stadtwerke-pforzheim
+name: "SWP Stadtwerke Pforzheim GmbH & Co. KG"
+website: "https://www.stadtwerke-pforzheim.de"
+regions:
+  - Baden-Württemberg
+
+tariffs:
+  "2026":
+    Q1:
+      - from: "00:00"
+        to: "01:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "01:45"
+        to: "06:15"
+        tariff: NT
+        price_ct_kwh_net: 1.76
+      - from: "06:15"
+        to: "10:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "10:45"
+        to: "13:00"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "13:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "17:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "19:30"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+    Q2:
+      - from: "00:00"
+        to: "01:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "01:45"
+        to: "06:15"
+        tariff: NT
+        price_ct_kwh_net: 1.76
+      - from: "06:15"
+        to: "10:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "10:45"
+        to: "13:00"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "13:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "17:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "19:30"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+    Q3:
+      - from: "00:00"
+        to: "01:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "01:45"
+        to: "06:15"
+        tariff: NT
+        price_ct_kwh_net: 1.76
+      - from: "06:15"
+        to: "10:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "10:45"
+        to: "13:00"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "13:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "17:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "19:30"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+    Q4:
+      - from: "00:00"
+        to: "01:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "01:45"
+        to: "06:15"
+        tariff: NT
+        price_ct_kwh_net: 1.76
+      - from: "06:15"
+        to: "10:45"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "10:45"
+        to: "13:00"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "13:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03
+      - from: "17:00"
+        to: "19:30"
+        tariff: HT
+        price_ct_kwh_net: 6.81
+      - from: "19:30"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.03

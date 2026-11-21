@@ -1,0 +1,81 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Lokalwerke GmbH
+# Quelle 2026: https://lokalwerke.de/wp-content/uploads/2026/05/Preisblatt-Netznutzung-Strom-2026.pdf
+# Stand 2026: Preisblatt 2026
+
+id: lokalwerke
+name: "Lokalwerke GmbH"
+website: "https://lokalwerke.de"
+regions:
+  - Nordrhein-Westfalen
+
+tariffs:
+  "2026":
+    Q1:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "06:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+      - from: "16:30"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 7.31
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+    Q2:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "06:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+      - from: "16:30"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 7.31
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+    Q3:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "06:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+      - from: "16:30"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 7.31
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+    Q4:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 1.38
+      - from: "06:00"
+        to: "16:30"
+        tariff: ST
+        price_ct_kwh_net: 5.51
+      - from: "16:30"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 7.31
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.51

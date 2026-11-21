@@ -1,0 +1,58 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Stadtwerke Freudenstadt GmbH & Co. KG
+# Quelle 2026: https://www.stadtwerke-freudenstadt.de/media/site/6bdaa5815d-1765982581/48-sw-fds-endgueltiges-netzentgelt-strom_2026.pdf
+# Stand 2026: endgültig, 17.12.2025
+
+id: stadtwerke-freudenstadt
+name: "Stadtwerke Freudenstadt GmbH & Co. KG"
+website: "https://www.stadtwerke-freudenstadt.de"
+regions:
+  - Baden-Württemberg
+
+tariffs:
+  "2026":
+    # HT/NT nur im 1. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.88
+      - from: "05:00"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 12.96
+      - from: "20:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95
+    Q3:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95
+    Q4:
+      - from: "00:00"
+        to: "05:00"
+        tariff: NT
+        price_ct_kwh_net: 0.88
+      - from: "05:00"
+        to: "18:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95
+      - from: "18:00"
+        to: "20:00"
+        tariff: HT
+        price_ct_kwh_net: 12.96
+      - from: "20:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 7.95

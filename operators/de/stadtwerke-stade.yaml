@@ -1,0 +1,58 @@
+# §14a EnWG Modul 3 – Zeitvariable Netzentgelte
+# Netzbetreiber: Stadtwerke Stade GmbH
+# Quelle 2026: https://www.stadtwerke-stade.de/fileadmin/Assets/Downloads/Netzdaten/Netzdaten_Strom/Netzentgelte_Strom/Preisbl%C3%A4tter/0Preisblatt_Netzentgelte_Strom_ab_01.01.2026.pdf
+# Stand 2026: gültig ab 01.01.2026
+
+id: stadtwerke-stade
+name: "Stadtwerke Stade GmbH"
+website: "https://www.stadtwerke-stade.de"
+regions:
+  - Niedersachsen
+
+tariffs:
+  "2026":
+    # HT/NT nur im 3. und 4. Quartal, sonst ganztägig ST
+    Q1:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
+    Q2:
+      - from: "00:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
+    Q3:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 0.58
+      - from: "06:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
+      - from: "17:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 8.76
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
+    Q4:
+      - from: "00:00"
+        to: "06:00"
+        tariff: NT
+        price_ct_kwh_net: 0.58
+      - from: "06:00"
+        to: "17:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
+      - from: "17:00"
+        to: "21:00"
+        tariff: HT
+        price_ct_kwh_net: 8.76
+      - from: "21:00"
+        to: "24:00"
+        tariff: ST
+        price_ct_kwh_net: 5.84
